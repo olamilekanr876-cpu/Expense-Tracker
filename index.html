@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expense Tracker | Raji Ridwan Olalekan</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Expense Tracker</h1>
+
+        <p class="subtitle">
+            Track your income and expenses
+        </p>
+
+        <!-- Balance -->
+        <div class="balance-card">
+
+            <h2>Current Balance</h2>
+
+            <h3 id="balance">
+                ₦0.00
+            </h3>
+
+        </div>
+
+
+        <!-- Summary -->
+        <div class="summary">
+
+            <div class="summary-card income">
+
+                <h3>Total Income</h3>
+
+                <p id="income">
+                    ₦0.00
+                </p>
+
+            </div>
+
+
+            <div class="summary-card expense">
+
+                <h3>Total Expenses</h3>
+
+                <p id="expense">
+                    ₦0.00
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Add Transaction -->
+        <div class="transaction-form">
+
+            <h2>Add Transaction</h2>
+
+            <form id="transactionForm">
+
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Description"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount"
+                    required
+                >
+
+                <select id="type">
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                    <option value="expense">
+                        Expense
+                    </option>
+
+                </select>
+
+                <button type="submit">
+                    Add Transaction
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Transaction List -->
+        <div class="transactions">
+
+            <h2>Transactions</h2>
+
+            <ul id="transactionList"></ul>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
