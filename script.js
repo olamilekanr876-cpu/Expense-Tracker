@@ -13,7 +13,9 @@ const balanceDisplay = document.getElementById("balance");
 const incomeDisplay = document.getElementById("income");
 
 const expenseDisplay = document.getElementById("expense");
+const expenseChart = document.getElementById("expenseChart");
 
+let chart;
 
 // Get saved transactions from Local Storage
 
@@ -58,11 +60,13 @@ transactionForm.addEventListener("submit", function(event) {
     transactions.push(transaction);
 
 
-    saveTransactions();
+saveTransactions();
 
-    displayTransactions();
+displayTransactions();
 
-    updateSummary();
+updateSummary();
+
+updateChart();
 
 
     transactionForm.reset();
@@ -150,11 +154,13 @@ function deleteTransaction(id) {
     });
 
 
-    saveTransactions();
+   saveTransactions();
 
-    displayTransactions();
+displayTransactions();
 
-    updateSummary();
+updateSummary();
+
+updateChart();
 
 }
 
@@ -205,3 +211,58 @@ function updateSummary() {
 displayTransactions();
 
 updateSummary();
+
+updateChart();
+
+
+function updateChart() {
+
+    const income = transactions
+        .filter(transaction => transaction.type === "income")
+        .reduce((total, transaction) => total + transaction.amount, 0);
+
+    const expense = transactions
+        .filter(transaction => transaction.type === "expense")
+        .reduce((total, transaction) => total + transaction.amount, 0);
+
+
+    if (chart) {
+        chart.destroy();
+    }
+
+
+    chart = new Chart(expenseChart, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: ["Income", "Expenses"],
+
+            datasets: [{
+
+                data: [income, expense]
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+
+                    position: "bottom"
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
